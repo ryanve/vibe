@@ -4,13 +4,13 @@
 $ npm install vibe
 ```
 
-### links
+# Links
 
 CDN: [dev](http://airve.github.com/js/vibe/vibe.js) | [min](http://airve.github.com/js/vibe/vibe.min.js)
 
 [Performance](http://jsperf.com/vibe)
 
-# methods
+# Methods
 
 ### static
 
