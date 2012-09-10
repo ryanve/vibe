@@ -6,7 +6,7 @@
     "author": "Ryan Van Etten <@ryanve>",
     "keywords": ["css", "class", "classes", "classlist", "dom", "ender", "javascript", "js"],
     "main": "./vibe.js",
-	"ender": "./ender.js",
+    "ender": "./ender.js",
     "repository": {
         "type": "git",
         "url": "https://github.com/ryanve/vibe.git"

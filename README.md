@@ -15,8 +15,8 @@ vibe.hasClass(elem, className)
 ### chain
 
 ```js
-vibe.fn.addClass(className)
-vibe.fn.removeClass(className)
-vibe.fn.toggleClass(className)
+vibe.fn.addClass(ssvClassNames)
+vibe.fn.removeClass(ssvClassNames)
+vibe.fn.toggleClass(ssvClassNames)
 vibe.fn.hasClass(className)
 ```
