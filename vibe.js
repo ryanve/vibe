@@ -3,7 +3,7 @@
  * @author      Ryan Van Etten (c) 2012
  * @link        http://github.com/ryanve/vibe
  * @license     MIT
- * @version     0.6.0
+ * @version     0.6.1
  */
 
 /*jslint browser: true, devel: true, node: true, passfail: false, bitwise: true, continue: true
@@ -38,7 +38,7 @@
             '' === c || el[classList].remove(c);
         } : function (el, c) {
             var classes = space + el.className.split(ssv).join(space) + space;
-            el.className = classes.replace(space + c + space, space);
+            el.className = classes.replace(space + c + space, space).replace(trimmer, '');
         }
 
       , hasClass = NATIVE ? function (el, c) {

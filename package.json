@@ -1,7 +1,7 @@
 {
     "name": "vibe",
     "description": "CSS classes for the masses",
-    "version": "0.6.0",
+    "version": "0.6.1",
     "homepage": "https://github.com/ryanve/vibe",
     "author": "Ryan Van Etten <@ryanve>",
     "keywords": ["css", "class", "classes", "classlist", "dom", "ender", "javascript", "js"],
