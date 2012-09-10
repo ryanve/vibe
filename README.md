@@ -1,13 +1,13 @@
 [vibe](https://github.com/ryanve/vibe)
 ====
 
-**[vibe](https://github.com/ryanve/vibe)** is a cross-browser [classList](https://developer.mozilla.org/en-US/docs/DOM/element.classList) module that you can drop into a base library or use as a standalone object.
+**[vibe](https://github.com/ryanve/vibe)** is a [fast](http://jsperf.com/vibe) cross-browser [classList](https://developer.mozilla.org/en-US/docs/DOM/element.classList) module that you can drop into a base library or use as a standalone object.
 
 ```
 $ npm install vibe
 ```
 
-**[CDN](http://airve.github.com)**: [dev](http://airve.github.com/js/vibe/vibe.js) - [min](http://airve.github.com/js/vibe/vibe.min.js) // **[performance](http://jsperf.com/vibe)**
+**[CDN](http://airve.github.com)**: [dev](http://airve.github.com/js/vibe/vibe.js) - [min](http://airve.github.com/js/vibe/vibe.min.js)
 
 # methods
 
