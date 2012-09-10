@@ -4,8 +4,9 @@
     "version": "0.5.0",
     "homepage": "https://github.com/ryanve/vibe",
     "author": "Ryan Van Etten <@ryanve>",
-    "keywords": ["css", "class", "classes", "classlist", "javascript", "js"],
+    "keywords": ["css", "class", "classes", "classlist", "dom", "ender", "javascript", "js"],
     "main": "./vibe.js",
+	"ender": "./ender.js",
     "repository": {
         "type": "git",
         "url": "https://github.com/ryanve/vibe.git"
