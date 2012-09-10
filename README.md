@@ -1,14 +1,15 @@
-**[vibe](https://github.com/ryanve/vibe)** is a cross-browser jQuery-compatible classList module that you can drop into a base library or use as a standalone object.
+[vibe](https://github.com/ryanve/vibe)
+====
+
+**[vibe](https://github.com/ryanve/vibe)** is a cross-browser [classList](https://developer.mozilla.org/en-US/docs/DOM/element.classList) module that you can drop into a base library or use as a standalone object.
 
 ```
 $ npm install vibe
 ```
 
-# links
+### links
 
-CDN: [dev](http://airve.github.com/js/vibe/vibe.js) | [min](http://airve.github.com/js/vibe/vibe.min.js)
-
-[performance](http://jsperf.com/vibe)
+CDN: [dev](http://airve.github.com/js/vibe/vibe.js) - [min](http://airve.github.com/js/vibe/vibe.min.js) | [performance](http://jsperf.com/vibe)
 
 # methods
 
@@ -17,20 +18,20 @@ CDN: [dev](http://airve.github.com/js/vibe/vibe.js) | [min](http://airve.github.
 fast simple versions are on the top-level:
 
 ```js
-vibe.addClass(elem, className)
-vibe.removeClass(elem, className)
-vibe.toggleClass(elem, className)
-vibe.hasClass(elem, className)
+vibe.addClass( elem, className )
+vibe.removeClass( elem, className )
+vibe.toggleClass( elem, className )
+vibe.hasClass( elem, className )
 ```
 ### chain
 
-more capable jQuery-compatible versions are in the chain:
+jQuery-compatible versions are in the chain:
 
 ```js
-vibe.fn.addClass(ssvClassNames)
-vibe.fn.removeClass(ssvClassNames)
-vibe.fn.toggleClass(ssvClassNames)
-vibe.fn.hasClass(className)
+vibe.fn.addClass( ssvClassNames )
+vibe.fn.removeClass( ssvClassNames )
+vibe.fn.toggleClass( ssvClassNames )
+vibe.fn.hasClass( className )
 ```
 
 # license
