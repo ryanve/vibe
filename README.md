@@ -1,4 +1,4 @@
-**[vibe](https://github.com/ryanve/vibe)** is a jQuery-compatible classList module that you can drop into a base library or use as a standalone object.
+**[vibe](https://github.com/ryanve/vibe)** is a cross-browser jQuery-compatible classList module that you can drop into a base library or use as a standalone object.
 
 ```
 $ npm install vibe
