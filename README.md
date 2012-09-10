@@ -4,13 +4,13 @@
 $ npm install vibe
 ```
 
-# Links
+# links
 
 CDN: [dev](http://airve.github.com/js/vibe/vibe.js) | [min](http://airve.github.com/js/vibe/vibe.min.js)
 
-[Performance](http://jsperf.com/vibe)
+[performance](http://jsperf.com/vibe)
 
-# Methods
+# methods
 
 ### static
 
@@ -33,7 +33,7 @@ vibe.fn.toggleClass(ssvClassNames)
 vibe.fn.hasClass(className)
 ```
 
-# License
+# license
 
 ### [vibe](http://github.com/ryanve/vibe) is available under the [MIT license](http://en.wikipedia.org/wiki/MIT_License)
 
