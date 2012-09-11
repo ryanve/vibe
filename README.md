@@ -44,7 +44,7 @@ $(elems).hasClass( className )
 ```
 standalone:
 ```js
-vibe.fn.hasClass.call(elems,  className )
+vibe.fn.hasClass.call( elems,  className )
 ```
 
 # license
