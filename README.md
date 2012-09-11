@@ -1,19 +1,19 @@
 [vibe](https://github.com/ryanve/vibe)
 ====
 
-**[vibe](https://github.com/ryanve/vibe)** is a [fast](http://jsperf.com/vibe) cross-browser [classList](https://developer.mozilla.org/en-US/docs/DOM/element.classList) module that you can drop into a base library or use as a standalone object.
+**[vibe](https://github.com/ryanve/vibe)** is a [fast](http://jsperf.com/vibe) cross-browser [classList](https://developer.mozilla.org/en-US/docs/DOM/element.classList) [module](https://npmjs.org/package/vibe) that you can mixin to a base library or use as a standalone object.
+
+**[CDN](http://airve.github.com)**: [dev](http://airve.github.com/js/vibe/vibe.js) | [min](http://airve.github.com/js/vibe/vibe.min.js)
 
 ```
 $ npm install vibe
 ```
 
-**[CDN](http://airve.github.com)**: [dev](http://airve.github.com/js/vibe/vibe.js) - [min](http://airve.github.com/js/vibe/vibe.min.js)
-
 # methods
 
 ### static
 
-fast simple versions are on the top-level:
+Cheap simple methods are on the top-level. Here **@param** `{Object}` **elem** must be a native element and **@param** `{string}` **className** is a CSS class, with **no** whitespace. If you pass `""`, no change occurs. No typechecking is done. Non-strings coherce to strings:
 
 ```js
 vibe.addClass( elem, className )
@@ -23,13 +23,28 @@ vibe.hasClass( elem, className )
 ```
 ### chain
 
-jQuery-compatible versions are in the chain:
+jQuery-compatible-ish methods (designed to be mixed into a jQuery-like lib) are usable with standalone vibe via [.call](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/call). Here **@this** `{Object|Array}` is an array or array-like set of elements, and **@param** `{string|Array|Function}` **ssv** is an array or space-separated string of class names, or a function to determine its value. Functions are scoped such that `this` is the current element. If the function returns `false`, further set iterations cease via [break](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Statements/break). If **ssv** is `null|undefined|whitespace|lengthless`, no change occurs:
 
 ```js
-vibe.fn.addClass( ssvClassNames )
-vibe.fn.removeClass( ssvClassNames )
-vibe.fn.toggleClass( ssvClassNames )
-vibe.fn.hasClass( className )
+$(elems).addClass( ssv )
+$(elems).removeClass( ssv )
+$(elems).toggleClass( ssv )
+```
+standalone:
+```js
+vibe.fn.addClass.call( elems, ssv )
+vibe.fn.removeClass.call( elems, ssv )
+vibe.fn.toggleClass.call( elems, ssv )
+```
+
+As for `.hasClass`: **@param** `{string}` **className** is the name of a single CSS class (like the statics) and the **@return** is boolean. It returns `true` if **any** of the elements have the class. Otherwise it returns `false`:
+
+```js
+$(elems).hasClass( className )
+```
+standalone:
+```js
+vibe.fn.hasClass.call(elems,  className )
 ```
 
 # license

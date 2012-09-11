@@ -3,7 +3,7 @@
  * @author      Ryan Van Etten (c) 2012
  * @link        http://github.com/ryanve/vibe
  * @license     MIT
- * @version     0.6.1
+ * @version     0.7.0
  */
 
 /*jslint browser: true, devel: true, node: true, passfail: false, bitwise: true, continue: true
@@ -23,9 +23,10 @@
       , docElem = document.documentElement
       , classList = 'classList'
       , NATIVE = classList in docElem
+              && !!docElem[classList].contains
               && !!docElem[classList].add 
               && !!docElem[classList].remove
-              && !!docElem[classList].contains
+              && !!docElem[classList].toggle
 
       , addClass = NATIVE ? function (el, c) {
             '' === c || el[classList].add(c);
@@ -37,8 +38,12 @@
       , removeClass = NATIVE ? function (el, c) {
             '' === c || el[classList].remove(c);
         } : function (el, c) {
-            var classes = space + el.className.split(ssv).join(space) + space;
-            el.className = classes.replace(space + c + space, space).replace(trimmer, '');
+            var s = '', classes = el.className.split(ssv), i = classes.length;
+            c = s + c; // use `s` to convert `c` to string ( `s` is repurposed below )
+            while ( i-- ) {// loop backwards ( but maintain the class order )
+                classes[i] && classes[i] !== c && (s = classes[i] + ((s ? space : s) + s));
+            }
+            el.className = s;
         }
 
       , hasClass = NATIVE ? function (el, c) {
@@ -50,7 +55,7 @@
         }
 
       , toggleClass = NATIVE ? function (el, c) {
-            '' === c || el[classList][ el[classList].contains(c) ? 'remove' : 'add' ](c);
+            '' === c || el[classList].toggle(c);
         } : function (el, c) {
             (hasClass(el, c) ? removeClass : addClass)(el, c);
         };
@@ -63,18 +68,18 @@
      */ 
     function essEach (c, method, els) {
         if ( null == c ) { return els; }
-        var j, h, i = 0, l = els.length;
+        var j, n, i = 0, l = els.length;
         if ( typeof c == 'function' ) {
             while ( i < l ) {
-                essEach( c.call(els[i]), method, [ els[i++] ] ); 
+                n = c.call( els[i] );
+                if ( n === false ) { break; }
+                essEach( n, method, [ els[i++] ] );
             }
         } else {
             c = typeof c == 'string' ? c.split(ssv) : c;
-            for ( h = c.length; i < l; i++ ) {
-                if ( els[i] != null ) {
-                    for ( j = 0; j < h; j++ ) {
-                        method(els[i], c[j]);
-                    }
+            for ( n = c.length; i < l; i++ ) {
+                for ( j = 0; j < n; j++ ) {
+                    method( els[i], c[j] );
                 }
             }
         }
