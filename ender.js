@@ -1,2 +1,2 @@
-// bridge (integration) file for ender.no.de
-( ender.ender( require('vibe')['fn'], true ) );
+// bridge file for github.com/ender-js
+(ender.ender(require('vibe')['fn'], true));
