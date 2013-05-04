@@ -1,0 +1,14 @@
+{
+    "name": "vibe",
+    "description": "CSS classes module",
+    "version": "0.7.0",
+    "homepage": "https://github.com/ryanve/vibe",
+    "author": "Ryan Van Etten <ryanve@gmail.com> (http://ryanve.com)",
+    "keywords": ["class", "classes", "classlist", "dom", "ender"],
+    "main": "./vibe.js",
+    "ender": "./ender.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ryanve/vibe.git"
+    }
+}
