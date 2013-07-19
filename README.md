@@ -1,72 +1,38 @@
-[vibe](https://github.com/ryanve/vibe)
-====
+# [vibe](https://github.com/ryanve/vibe)
 
-**[vibe](https://github.com/ryanve/vibe)** is a [fast](http://jsperf.com/vibe) cross-browser [classList](https://developer.mozilla.org/en-US/docs/DOM/element.classList) [module](https://npmjs.org/package/vibe) that you can mixin to a base library or use as a standalone object.
+**[vibe](http://vibe.airve.com)** is a [fast](http://jsperf.com/vibe) cross-browser [classList](https://developer.mozilla.org/en-US/docs/DOM/element.classList) [module](https://npmjs.org/package/vibe) that you can mixin to a main library or use standalone.
 
-**[CDN](http://airve.github.com)**: [dev](http://airve.github.com/js/vibe/vibe.js) | [min](http://airve.github.com/js/vibe/vibe.min.js)
+**[Download](http://airve.github.io)**: [dev](http://airve.github.com/js/vibe/vibe.js) | [min](http://airve.github.com/js/vibe/vibe.min.js)
 
 ```
 $ npm install vibe
 ```
 
-# methods
+## API
 
-### static
+Cheap simple **static** methods on the top-level accept a native DOM element and a single `className` with **no** whitespace. If you pass `""`, no change occurs. No typechecking is done. Non-strings coherce to strings:
 
-Cheap simple methods are on the top-level. Here **@param** `{Object}` **elem** must be a native element and **@param** `{string}` **className** is a CSS class, with **no** whitespace. If you pass `""`, no change occurs. No typechecking is done. Non-strings coherce to strings:
+- `vibe.addClass(element, className)`
+- `vibe.removeClass(element, className)`
+- `vibe.toggleClass(element, className)`
+- `vibe.hasClass(element, className)` // `true` if any element has `className`. 
 
-```js
-vibe.addClass( elem, className )
-vibe.removeClass( elem, className )
-vibe.toggleClass( elem, className )
-vibe.hasClass( elem, className )
-```
-### chain
+Integrated **chain** methods are jQuery-compatible. Here `ssv` denotes where multiple classes can be passed via array or space-separated string, or a function to determine its value. Functions run with `this` as the current element. If the function returns `false`, further set iterations cease via [break](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Statements/break). If `ssv` is `null|undefined|whitespace|lengthless`, no change occurs:
 
-jQuery-compatible-ish methods (designed to be mixed into a jQuery-like lib) are usable with standalone vibe via [.call](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/call). Here **@this** `{Object|Array}` is an array or array-like set of elements, and **@param** `{string|Array|Function}` **ssv** is an array or space-separated string of class names, or a function to determine its value. Functions are scoped such that `this` is the current element. If the function returns `false`, further set iterations cease via [break](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Statements/break). If **ssv** is `null|undefined|whitespace|lengthless`, no change occurs:
+- `$(elements).addClass(ssv)` // chainable
+- `$(elements).removeClass(ssv)` // chainable
+- `$(elements).toggleClass(ssv)` // chainable
+- `$(elements).hasClass(className)` // `true` if any element has `className`. 
 
-```js
-$(elems).addClass( ssv )
-$(elems).removeClass( ssv )
-$(elems).toggleClass( ssv )
-```
-standalone:
-```js
-vibe.fn.addClass.call( elems, ssv )
-vibe.fn.removeClass.call( elems, ssv )
-vibe.fn.toggleClass.call( elems, ssv )
-```
+In **standalone** usage, these methods can be used via [.call](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/call)
 
-As for `.hasClass`: **@param** `{string}` **className** is the name of a single CSS class (like the statics) and the **@return** is boolean. It returns `true` if **any** of the elements have the class. Otherwise it returns `false`:
+- `vibe.fn.addClass.call(elements, ssv)`
+- `vibe.fn.removeClass.call(elements, ssv)`
+- `vibe.fn.toggleClass.call(elements, ssv)`
+- `vibe.fn.hasClass.call(elements,  className)`
 
-```js
-$(elems).hasClass( className )
-```
-standalone:
-```js
-vibe.fn.hasClass.call( elems,  className )
-```
-
-# license
+## License
 
 ### [vibe](http://github.com/ryanve/vibe) is available under the [MIT license](http://en.wikipedia.org/wiki/MIT_License)
 
 Copyright (C) 2012 by [Ryan Van Etten](https://github.com/ryanve)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
