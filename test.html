@@ -7,15 +7,16 @@
         html { background:#fff; color:#222; font-family:sans-serif; }
         body { width:94%; padding:1em 3%; margin:0 auto; }
         .test { margin:1em 0; height:2em; }
+        .green { background:#8d2; }
         .magenta { background:#f09; }
         .red { background:#f03; }
         .yellow { background:#ff0; }
         .white { background:#fff; }
     </style>
     <script src="vibe.js"></script>
+    <script src="http://airve.github.io/js/aok/aok.min.js"></script>
 </head>
 <body>
-
     <div class="test"></div>
     <div class="test"></div>
     <div class="test"></div>
@@ -23,41 +24,72 @@
     <div class="test"></div>
 
 <script>
-(function (w, d, vibe, console) {
+(function (win, doc, vibe, aok) {
 
-    var hasConsole = !!(console && console.log);
-    var els = d.getElementsByTagName('div');    
-    var docElem = document.documentElement
-      , classList = 'classList'
-      , NATIVE = classList in docElem
-              && !!docElem[classList].toggle
-              && !!docElem[classList].add 
-              && !!docElem[classList].remove
-              && !!docElem[classList].contains;
+    var docElem = doc.documentElement
+      , subject = docElem['classList']
+      , hasApi = !!(subject && subject.contains && subject.toggle && subject.add && subject.remove)
+      , log = aok.log
+      , info = aok.info
+        // emulate wrapped nodes:
+      , $divs = doc.getElementsByTagName('div')
+      , $body = [doc.body];
 
-    var log = hasConsole ? function (o) {
-        console.log(o); 
-    } : function (o) {
-        alert(o); 
-    };
-    
-    log('native: ' + NATIVE )
-    log( typeof d.body.className );
-    log( vibe.addClass(d.body, 'magenta') || d.body.className );
-    log( vibe.toggleClass(d.body, 'red') || d.body.className )
-    log( vibe.fn.hasClass.call([d.body], 'red') !== vibe.fn.hasClass.call([d.body], 'yellow') )
-    log( vibe.toggleClass(d.body, 'yellow') || d.body.className );
-    log( vibe.fn.hasClass.call([d.body], 'yellow') )
-    log( vibe.fn.addClass.call(els, 'white magenta').length )
-    log( vibe.fn.removeClass.call(els, function () { return 'white'; }).length )
-    log( vibe.fn.toggleClass.call(els, 'white').length )
-    log( vibe.fn.hasClass.call(els, 'white') )
+    log(vibe);
+    info('native: ' + hasApi);
+    aok.prototype.express = info;
 
-    if ( hasConsole ) {
-        log(vibe);  
-    }
+    aok({id:'green', test:function() {
+        doc.body.className = 'green';
+        return (
+             true === vibe.fn.hasClass.call($body, 'green')
+          && $body === vibe.fn.removeClass.call($body, 'green')
+          && false === vibe.fn.hasClass.call($body, 'green')
+        );
+    }});
+    aok({id:'magenta', test:function() {
+        return (
+             false === vibe.fn.hasClass.call($body, 'magenta')
+          && $body === vibe.fn.addClass.call($body, 'magenta')
+          && true === vibe.fn.hasClass.call($body, 'magenta')
+        );
+    }});
+    aok({id:'red', test:function() {
+        return (
+             false === vibe.fn.hasClass.call($body, 'red')
+          && $body === vibe.fn.toggleClass.call($body, 'red')
+          && true === vibe.fn.hasClass.call($body, 'red')
+        );
+    }});
+    aok({id:'yellow', test:function() {
+        return (
+            false === vibe.hasClass(doc.body, 'yellow') 
+         && void 0 === vibe.toggleClass(doc.body, 'yellow') 
+         && true === vibe.hasClass(doc.body, 'yellow')
+        );
+    }});
+    aok({id:'addMulti', test:function() {
+        return (
+            $divs === vibe.fn.removeClass.call($divs, 'white magenta')
+         && false === vibe.fn.hasClass.call($divs, 'white')
+         && false === vibe.fn.hasClass.call($divs, 'magenta')
+         && $divs === vibe.fn.addClass.call($divs, 'white magenta')
+         && true === vibe.fn.hasClass.call($divs, 'white')
+         && true === vibe.fn.hasClass.call($divs, 'magenta')
+        );
 
-}(this, document, this.vibe, this.console));
+    }});
+    aok({id:'remFunky', test:function() {
+        return $divs === vibe.fn.removeClass.call($divs, function () { return 'white'; });
+    }});
+    aok({id:'white', test:function() {
+        var bool = vibe.fn.hasClass.call($divs, 'white');
+        return (
+            $divs === vibe.fn.toggleClass.call($divs, 'white')
+         && !bool === vibe.fn.hasClass.call($divs, 'white')
+        );
+    }});
+}(this, document, vibe, aok));
 </script>
 
 </body>
