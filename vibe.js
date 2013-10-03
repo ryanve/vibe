@@ -1,13 +1,14 @@
 /*!
  * vibe      CSS classes for the masses.
- * @version  0.8.0
+ * @version  0.9.0
  * @link     http://vibe.airve.com
  * @author   Ryan Van Etten
  * @license  MIT
  */
 
-/*jshint expr:true, sub:true, supernew:true, debug:true, node:true, boss:true, devel:true, evil:true, 
-  laxcomma:true, eqnull:true, undef:true, unused:true, browser:true, jquery:true, maxerr:100 */
+/*jshint expr:true, sub:true, supernew:true, debug:true, node:true, 
+  boss:true, devel:true, evil:true, laxcomma:true, eqnull:true, 
+  undef:true, unused:true, browser:true, jquery:true, maxerr:10 */
 
 (function(root, name, make) {
     typeof module != 'undefined' && module['exports'] ? module['exports'] = make() : root[name] = make();
@@ -31,9 +32,8 @@
             '' === c || el[classList].remove(c);
         } : function(el, c) {
             var s = '', classes = el.className.split(ssv), i = classes.length;
-            c = s + c; // Use `s` to convert `c` to string. Repurpose `s` below.
-            // Loop backwards and maintain the class order.
-            while (i--)
+            for (c = s + c; i--;)
+                // Backwards loop maintains class order.
                 classes[i] && classes[i] !== c && (s = classes[i] + ((s ? space : s) + s));
             el.className = s;
         }
@@ -51,24 +51,23 @@
         };
 
     /**
-     * @param {string|Array|Function} c
-     * @param {Function}              method
      * @param {Array|Object}          els
+     * @param {Function}              method
+     * @param {string|Array|Function} list
      */ 
-    function essEach(c, method, els) {
-        if (null == c) return els;
+    function eachList(els, method, list) {
         var j, n, i = 0, l = els.length;
-        if (typeof c == 'function') {
+        if (typeof list == 'function') {
             while (i < l) {
-                n = c.call(els[i]);
+                n = list.call(els[i]);
                 if (false === n) break;
-                essEach(n, method, [els[i++]]);
+                eachList([els[i++]], method, n);
             }
-        } else {
-            c = typeof c == 'string' ? c.split(ssv) : c;
-            for (n = c.length; i < l; i++) {
+        } else if (list) {
+            list = typeof list == 'string' ? list.split(ssv) : list;
+            for (n = list.length; i < l; i++) {
                 for (j = 0; j < n; j++) {
-                    method(els[i], c[j]);
+                    method(els[i], list[j]);
                 }
             }
         }
@@ -81,18 +80,18 @@
       , 'toggleClass': toggleClass
       , 'hasClass': hasClass
       , 'fn': {
-            'addClass': function(c) { 
-                return essEach(c, addClass, this); 
+            'addClass': function(list) {
+                return eachList(this, addClass, list); 
             }
-          , 'removeClass': function(c) { 
-                return essEach(c, removeClass, this); 
+          , 'removeClass': function(list) { 
+                return eachList(this, removeClass, list); 
             }
-          , 'toggleClass': function(c) { 
-                return essEach(c, toggleClass, this); 
+          , 'toggleClass': function(list, state) {
+                return eachList(this, true === state ? addClass : false === state ? removeClass : toggleClass, list);
             }
-          , 'hasClass': function(c) {
+          , 'hasClass': function(list) {
                 for (var i = 0, l = this.length; i < l;)
-                    if (hasClass(this[i++], c)) return true;
+                    if (hasClass(this[i++], list)) return true;
                 return false;
             }
         }

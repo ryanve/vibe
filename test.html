@@ -83,11 +83,20 @@
         return $divs === vibe.fn.removeClass.call($divs, function () { return 'white'; });
     }});
     aok({id:'white', test:function() {
-        var bool = vibe.fn.hasClass.call($divs, 'white');
-        return (
-            $divs === vibe.fn.toggleClass.call($divs, 'white')
-         && !bool === vibe.fn.hasClass.call($divs, 'white')
-        );
+        var token = 'white'
+          , toggle = vibe.fn.toggleClass
+          , has = vibe.fn.hasClass
+          , before = has.call($divs, 'white')
+          , bools = [true, false, true]
+          , i = bools.length;
+        if (typeof before != 'boolean') return false;
+        if ($divs !== toggle.call($divs, token)) return false;
+        if (before === has.call($divs, token)) return false;
+        while (i--) {
+            vibe.fn.toggleClass.call($divs, token, bools[i]);
+            if (bools[i] !== vibe.fn.hasClass.call($divs, token)) return false;
+        }
+        return true;
     }});
 }(this, document, vibe, aok));
 </script>

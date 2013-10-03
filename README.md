@@ -1,38 +1,47 @@
-# [vibe](https://github.com/ryanve/vibe)
+# [vibe](../../)
 
-**[vibe](http://vibe.airve.com)** is a [fast](http://jsperf.com/vibe) cross-browser [classList](https://developer.mozilla.org/en-US/docs/DOM/element.classList) [module](https://npmjs.org/package/vibe) that you can mixin to a main library or use standalone.
+#### cross-browser `[class]` JavaScript [module](https://npmjs.org/package/vibe)&mdash;uses [classList](https://developer.mozilla.org/en-US/docs/DOM/element.classList) where available
 
-**[Download](http://airve.github.io)**: [dev](http://airve.github.com/js/vibe/vibe.js) | [min](http://airve.github.com/js/vibe/vibe.min.js)
-
-```
+```sh
 $ npm install vibe
 ```
 
-## API
+## API ([0.9](../../releases))
 
-Cheap simple **static** methods on the top-level accept a native DOM element and a single `className` with **no** whitespace. If you pass `""`, no change occurs. No typechecking is done. Non-strings coherce to strings:
+### Parameters
 
-- `vibe.addClass(element, className)`
-- `vibe.removeClass(element, className)`
-- `vibe.toggleClass(element, className)`
-- `vibe.hasClass(element, className)` // `true` if any element has `className`. 
+- <b>element</b> denotes a native DOM Element
+- <b>token</b> denotes a single class name
+- <b>$</b> denotes a jQuery-compatible lib such as [ender](https://npmjs.org/package/ender-js)
+- <b>?</b> denotes a optional parameter
+- <b>stack</b> denotes an array or collection of elements
+- <b>ssv</b> denotes where multiple classes can be passed via array or space-separated string, or a function to determine its value&mdash;functions run with `this` as the current element and can cease further iterations by returning `false`.
 
-Integrated **chain** methods are jQuery-compatible. Here `ssv` denotes where multiple classes can be passed via array or space-separated string, or a function to determine its value. Functions run with `this` as the current element. If the function returns `false`, further set iterations cease via [break](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Statements/break). If `ssv` is `null|undefined|whitespace|lengthless`, no change occurs:
+### Fast simple static methods
 
-- `$(elements).addClass(ssv)` // chainable
-- `$(elements).removeClass(ssv)` // chainable
-- `$(elements).toggleClass(ssv)` // chainable
-- `$(elements).hasClass(className)` // `true` if any element has `className`. 
+- `vibe.addClass(element, token)`
+- `vibe.removeClass(element, token)`
+- `vibe.toggleClass(element, token)`
+- `vibe.hasClass(element, token)`
 
-In **standalone** usage, these methods can be used via [.call](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/call)
+### [jQueryish](http://api.jquery.com/category/manipulation/class-attribute/) chain methods
 
-- `vibe.fn.addClass.call(elements, ssv)`
-- `vibe.fn.removeClass.call(elements, ssv)`
-- `vibe.fn.toggleClass.call(elements, ssv)`
-- `vibe.fn.hasClass.call(elements,  className)`
+#### Integrated Syntax
 
-## License
+- `$(elements).addClass(ssv)`
+- `$(elements).removeClass(ssv)`
+- `$(elements).toggleClass(ssv, bool?)`
+- `$(elements).hasClass(token)` &rarr; `true` if **any** element has it
 
-### [vibe](http://github.com/ryanve/vibe) is available under the [MIT license](http://en.wikipedia.org/wiki/MIT_License)
+#### Standalone Syntax
+
+In <b>standalone</b> usage, these methods can be run via [`.call`](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/call)
+
+- `vibe.fn.addClass.call(stack, ssv)`
+- `vibe.fn.removeClass.call(stack, ssv)`
+- `vibe.fn.toggleClass.call(stack, ssv, bool?)`
+- `vibe.fn.hasClass.call(stack,  token)`
+
+## [MIT License](http://opensource.org/licenses/MIT)
 
 Copyright (C) 2012 by [Ryan Van Etten](https://github.com/ryanve)
