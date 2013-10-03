@@ -44,4 +44,4 @@ In <b>standalone</b> usage, these methods can be run via [`.call`](https://devel
 
 ## [MIT License](http://opensource.org/licenses/MIT)
 
-Copyright (C) 2012 by [Ryan Van Etten](https://github.com/ryanve)
+Copyright (C) 2012 [Ryan Van Etten](https://github.com/ryanve)
