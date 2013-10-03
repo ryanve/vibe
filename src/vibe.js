@@ -1,9 +1,3 @@
-/*!
- * vibe 0.9.0+201310030954
- * https://github.com/ryanve/vibe
- * MIT License 2013 Ryan Van Etten
- */
-
 (function(root, name, make) {
     typeof module != 'undefined' && module['exports'] ? module['exports'] = make() : root[name] = make();
 }(this, 'vibe', function() {

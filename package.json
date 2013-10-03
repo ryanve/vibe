@@ -1,14 +1,22 @@
 {
     "name": "vibe",
-    "description": "CSS classes module",
-    "version": "0.8.0",
+    "description": "jQuery-compatible CSS classes module",
+    "version": "0.9.0",
     "homepage": "https://github.com/ryanve/vibe",
-    "author": "Ryan Van Etten <ryanve@gmail.com> (http://ryanve.com)",
+    "license": "MIT",
+    "author": "Ryan Van Etten",
     "keywords": ["class", "classes", "classlist", "dom", "ender"],
     "main": "./vibe.js",
-    "ender": "./ender.js",
+    "ender": "./src/ender.js",
     "repository": {
         "type": "git",
         "url": "https://github.com/ryanve/vibe.git"
+    },
+    "devDependencies": {
+        "aok": "~1.3",
+        "grunt": "~0.4.1",
+        "grunt-contrib-uglify": "~0.2.4",
+        "grunt-contrib-concat": "~0.3.0",
+        "grunt-contrib-jshint": "~0.6.4"
     }
 }
