@@ -1,5 +1,5 @@
 /*!
- * vibe 0.9.1+201310212229
+ * vibe 0.9.2+201310212322
  * https://github.com/ryanve/vibe
  * MIT License 2013 Ryan Van Etten
  */
@@ -9,14 +9,13 @@
 }(this, 'vibe', function() {
 
     var classList = 'classList'
-      , space = ' '
       , subject = document.documentElement[classList]
       , hasApi = !!(subject && subject.contains && subject.add && subject.remove)
-      , tabs = /[\t\r\n]/g
-      , ssv = /\s+/
+      , whitespace = /\s+/g
+      , ssv = /\S+/g
+      , space = ' '
       , contains = function(str, token) {
-            str = str ? str.replace(tabs, space) : str;
-            return !!~(space + str + space).indexOf(space + token + space);
+            return !!~(space + str.replace(whitespace, space) + space).indexOf(space + token + space);
         }
 
       , addClass = hasApi ? function(el, c) {
@@ -28,9 +27,8 @@
       , removeClass = hasApi ? function(el, c) {
             '' === c || el[classList].remove(c);
         } : function(el, c) {
-            var s = '', classes = el.className.split(ssv), i = classes.length;
-            for (c = s + c; i--;)
-                classes[i] && classes[i] !== c && (s = classes[i] + ((s ? space : s) + s));
+            var s = '', classes = el.className.match(ssv), i = classes && classes.length;
+            for (c = s + c; i--;) s = c === classes[i] ? s : classes[i] + (s ? space : s) + s;
             el.className = s;
         }
 
@@ -60,8 +58,7 @@
                 if (false === n) break;
                 bulk([els[i++]], fn, n);
             }
-        } else if (list) {
-            list = typeof list == 'string' ? list.split(ssv) : list;
+        } else if (typeof list == 'string' ? list = list.match(ssv) : list) {
             for (n = list.length; i < l; i++) {
                 for (j = 0; j < n; j++) {
                     fn(els[i], list[j]);
