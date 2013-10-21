@@ -1,5 +1,5 @@
 /*!
- * vibe 0.9.1+201310212224
+ * vibe 0.9.1+201310212229
  * https://github.com/ryanve/vibe
  * MIT License 2013 Ryan Van Etten
  */
@@ -22,8 +22,7 @@
       , addClass = hasApi ? function(el, c) {
             '' === c || el[classList].add(c);
         } : function(el, c) {
-            var classes = el.className;
-            contains(classes, c) || (el.className = classes.split(ssv).join(space) + space + c);
+            contains(el.className, c) || (el.className += space + c);
         }
 
       , removeClass = hasApi ? function(el, c) {

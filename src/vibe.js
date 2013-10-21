@@ -16,8 +16,7 @@
       , addClass = hasApi ? function(el, c) {
             '' === c || el[classList].add(c);
         } : function(el, c) {
-            var classes = el.className;
-            contains(classes, c) || (el.className = classes.split(ssv).join(space) + space + c);
+            contains(el.className, c) || (el.className += space + c);
         }
 
       , removeClass = hasApi ? function(el, c) {
