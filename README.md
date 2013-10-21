@@ -21,7 +21,7 @@ $ npm install vibe
 
 - `vibe.addClass(element, token)`
 - `vibe.removeClass(element, token)`
-- `vibe.toggleClass(element, token)`
+- `vibe.toggleClass(element, token, force?)`
 - `vibe.hasClass(element, token)`
 
 ### [jQueryish](http://api.jquery.com/category/manipulation/class-attribute/) chain methods
@@ -30,7 +30,7 @@ $ npm install vibe
 
 - `$(elements).addClass(ssv)`
 - `$(elements).removeClass(ssv)`
-- `$(elements).toggleClass(ssv, bool?)`
+- `$(elements).toggleClass(ssv, force?)`
 - `$(elements).hasClass(token)` &rarr; `true` if **any** element has it
 
 #### Standalone Syntax
@@ -39,8 +39,8 @@ In <b>standalone</b> usage, these methods can be run via [`.call`](https://devel
 
 - `vibe.fn.addClass.call(stack, ssv)`
 - `vibe.fn.removeClass.call(stack, ssv)`
-- `vibe.fn.toggleClass.call(stack, ssv, bool?)`
-- `vibe.fn.hasClass.call(stack,  token)`
+- `vibe.fn.toggleClass.call(stack, ssv, force?)`
+- `vibe.fn.hasClass.call(stack, token)`
 
 ## [MIT License](http://opensource.org/licenses/MIT)
 
