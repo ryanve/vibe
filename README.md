@@ -15,7 +15,7 @@ $ npm install vibe
 - <b>$</b> denotes a jQuery-compatible lib such as [ender](https://npmjs.org/package/ender-js)
 - <b>?</b> denotes a optional parameter
 - <b>stack</b> denotes an array or collection of elements
-- <b>ssv</b> denotes where multiple classes can be passed via array or space-separated string, or a function to determine its value&mdash;functions run with `this` as the current element and can cease further iterations by returning `false`.
+- <b>ssv</b> denotes where multiple classes can be passed via array or space-separated string, or a function to determine its value&mdash;functions run with `this` as the current element and can return `false` to cease further iterations.
 
 ### Fast simple static methods
 

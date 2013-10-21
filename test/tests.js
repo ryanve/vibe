@@ -34,8 +34,11 @@
     }});
 
     aok({id:'yellow', test:function() {
-        return false === vibe.hasClass(doc.body, 'yellow') && 
-            void 0 === vibe.toggleClass(doc.body, 'yellow') && 
+        vibe.addClass(doc.body, 'yellow');
+        return true === vibe.hasClass(doc.body, 'yellow') &&
+            false === vibe.toggleClass(doc.body, 'yellow') &&
+            false === vibe.hasClass(doc.body, 'yellow') && 
+            true === vibe.toggleClass(doc.body, 'yellow') &&
             true === vibe.hasClass(doc.body, 'yellow');
     }});
 
