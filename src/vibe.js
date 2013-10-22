@@ -34,7 +34,7 @@
 
       , toggleClass = function(el, c, force) {
             if ('' === c) return true;
-            force = true === force || !hasClass(el, c);
+            force = typeof force == 'boolean' ? force : !hasClass(el, c);
             (force ? addClass : removeClass)(el, c);
             return force;
         };

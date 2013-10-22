@@ -1,5 +1,5 @@
 /*!
- * vibe 0.9.2+201310212322
+ * vibe 0.9.2+201310220432
  * https://github.com/ryanve/vibe
  * MIT License 2013 Ryan Van Etten
  */
@@ -40,7 +40,7 @@
 
       , toggleClass = function(el, c, force) {
             if ('' === c) return true;
-            force = true === force || !hasClass(el, c);
+            force = typeof force == 'boolean' ? force : !hasClass(el, c);
             (force ? addClass : removeClass)(el, c);
             return force;
         };

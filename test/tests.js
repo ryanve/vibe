@@ -32,14 +32,13 @@
             return r;
         };
 
+    log(vibe);
+    info('hasNative: ' + hasApi);
+    aok.prototype.express = info;
     aok.prototype.cull = function() {
         this.test || fails++;
         return cull.apply(this, arguments);
     };
-
-    log(vibe);
-    info('hasNative: ' + hasApi);
-    aok.prototype.express = info;
     
     aok(function() {
         var sub = vibe[this.id='hasClass'];
