@@ -4,14 +4,11 @@
     <meta charset=utf-8>
     <title>vibe :: test</title>
     <style>
-        html { background:#fff; color:#222; font-family:sans-serif; }
+        html { background:#ed3; color:#111; font-family:sans-serif; }
         body { width:94%; padding:1em 3%; margin:0 auto; }
-        .test { margin:1em 0; height:2em; }
-        .green { background:#8d2; }
-        .magenta { background:#f09; }
-        .red { background:#f03; }
-        .yellow { background:#ff0; }
-        .white { background:#fff; }
+        .test { margin:1em 0; height:2em; background:#efefef; }
+        .passed { background:#8d2; }
+        .failed { background:#f13; }
     </style>
 </head>
 <body>
@@ -20,7 +17,7 @@
     <div class="test"></div>
     <div class="test"></div>
     <div class="test"></div>
-
+    <h4>Open the console.</h4>
     <script src="../node_modules/aok/aok.min.js"></script>
     <script src="../vibe.js"></script>
     <script src="./tests.js"></script>
