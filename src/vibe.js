@@ -77,9 +77,9 @@
           , 'toggleClass': function(list, state) {
                 return bulk(this, true === state ? addClass : false === state ? removeClass : toggleClass, list);
             }
-          , 'hasClass': function(list) {
+          , 'hasClass': function(c) {
                 for (var i = 0, l = this.length; i < l;)
-                    if (hasClass(this[i++], list)) return true;
+                    if (hasClass(this[i++], c)) return true;
                 return false;
             }
         }
