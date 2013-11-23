@@ -1,11 +1,11 @@
 {
     "name": "vibe",
     "description": "jQuery-compatible CSS classes module",
-    "version": "0.9.2",
+    "version": "0.9.3",
     "homepage": "https://github.com/ryanve/vibe",
     "license": "MIT",
     "author": "Ryan Van Etten",
-    "keywords": ["class", "classes", "classlist", "dom", "ender"],
+    "keywords": ["class", "classes", "classlist", "dom", "ender", "browser"],
     "main": "./vibe.js",
     "ender": "./src/ender.js",
     "repository": {

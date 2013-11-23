@@ -1,5 +1,5 @@
 /*!
- * vibe 0.9.2+201310220432
+ * vibe 0.9.3+201311230520
  * https://github.com/ryanve/vibe
  * MIT License 2013 Ryan Van Etten
  */
@@ -27,9 +27,9 @@
       , removeClass = hasApi ? function(el, c) {
             '' === c || el[classList].remove(c);
         } : function(el, c) {
-            var s = '', classes = el.className.match(ssv), i = classes && classes.length;
-            for (c = s + c; i--;) s = c === classes[i] ? s : classes[i] + (s ? space : s) + s;
-            el.className = s;
+            var diff = 0, s = '', classes = el.className.match(ssv), i = classes && classes.length;
+            for (c = s + c; i--;) c === classes[i] ? ++diff : s = classes[i] + (s ? space : s) + s;
+            if (diff) el.className = s;
         }
 
       , hasClass = hasApi ? function(el, c) {
@@ -83,9 +83,9 @@
           , 'toggleClass': function(list, state) {
                 return bulk(this, true === state ? addClass : false === state ? removeClass : toggleClass, list);
             }
-          , 'hasClass': function(list) {
+          , 'hasClass': function(c) {
                 for (var i = 0, l = this.length; i < l;)
-                    if (hasClass(this[i++], list)) return true;
+                    if (hasClass(this[i++], c)) return true;
                 return false;
             }
         }

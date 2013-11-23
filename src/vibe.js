@@ -21,9 +21,9 @@
       , removeClass = hasApi ? function(el, c) {
             '' === c || el[classList].remove(c);
         } : function(el, c) {
-            var s = '', classes = el.className.match(ssv), i = classes && classes.length;
-            for (c = s + c; i--;) s = c === classes[i] ? s : classes[i] + (s ? space : s) + s;
-            el.className = s;
+            var diff = 0, s = '', classes = el.className.match(ssv), i = classes && classes.length;
+            for (c = s + c; i--;) c === classes[i] ? ++diff : s = classes[i] + (s ? space : s) + s;
+            if (diff) el.className = s;
         }
 
       , hasClass = hasApi ? function(el, c) {
