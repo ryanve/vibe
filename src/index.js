@@ -4,7 +4,7 @@
 }(this, 'vibe', function() {
 
   var classList = 'classList'
-    , subject = document.documentElement[classList]
+    , subject = typeof document != 'undefined' && document.documentElement[classList]
     , hasApi = !!(subject && subject.contains && subject.add && subject.remove)
     , whitespace = /\s+/g
     , ssv = /\S+/g

@@ -1,10 +1,11 @@
-(function(root, doc) {
+(function(root) {
   var fails = 0
-    , aok = root.aok
-    , vibe = root.vibe
+    , doc = typeof document != 'undefined' && document
+    , aok = !doc ? require('aok') : root.aok
+    , vibe = !doc ? require('../src') : root.vibe
     , effin = vibe.fn
     , slice = [].slice
-    , docElem = doc.documentElement
+    , docElem = !!doc && doc.documentElement
     , subject = docElem['classList']
     , hasApi = !!(subject && subject.contains && subject.add && subject.remove)
     , invoke = function(method, e) {
@@ -18,9 +19,7 @@
         };
       }
     , hasKlass = partial(invoke, 'hasClass')
-    , log = aok.log
-    , info = aok.info
-    , $divs = doc.getElementsByTagName('div')
+    , $divs = !!doc && doc.getElementsByTagName('div')
     , cull = aok.prototype.cull
     , borrow = function(e, fn, init) {
         var r, a = e.nodeType ? [e] : e, l = a.length, i = l, j = l, before = [];
@@ -31,14 +30,21 @@
         while (l--) a[l].className = before[l];
         return r;
       };
-
-  log(vibe);
-  info('hasNative: ' + hasApi);
-  aok.prototype.express = info;
+      
+  if (![].some) aok.prototype.express = aok.info; // alert in ie8
   aok.prototype.cull = function() {
     this.test || fails++;
     return cull.apply(this, arguments);
   };
+  
+  aok('methods exist', !!vibe && !!vibe.fn && !aok.fail([
+    'addClass', 'removeClass', 'toggleClass', 'hasClass'
+  ], function(method) {
+    return typeof vibe[method] == 'function' && typeof vibe.fn[method] == 'function';
+  }));
+
+  if (doc) aok.info('hasNative: ' + hasApi);
+  else return void aok.warn('Open ./test/index.html to view test results.');
   
   aok(function() {
     var sub = vibe[this.id='hasClass'];
@@ -142,4 +148,4 @@
 
   vibe.toggleClass(docElem, 'failed', !!fails);
   vibe.toggleClass(docElem, 'passed', !fails);
-}(this, document));
+}(this));
